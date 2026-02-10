@@ -28,7 +28,14 @@ class _CadastroPageState extends State<CadastroPage> {
 
   Future<void> salvar() async {
     final texto = textoController.text;
-    final numero = int.tryParse(numeroController.text) ?? 0;
+    final numeroString = numeroController.text.trim();
+
+    if (texto.isEmpty || numeroString.isEmpty) {
+      mostrarErro('Todos os campos são obrigatórios.');
+      return;
+    }
+
+    final numero = int.tryParse(numeroString) ?? 0;
 
     final cadastro = Cadastro(texto: texto, numero: numero);
 
@@ -59,7 +66,10 @@ class _CadastroPageState extends State<CadastroPage> {
         title: Text('Erro'),
         content: Text(msg),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: Text('OK'))
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text('OK'),
+          ),
         ],
       ),
     );
