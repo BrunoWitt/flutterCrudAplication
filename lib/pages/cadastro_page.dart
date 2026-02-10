@@ -37,6 +37,11 @@ class _CadastroPageState extends State<CadastroPage> {
 
     final numero = int.tryParse(numeroString) ?? 0;
 
+    if (numero <= 0) {
+      mostrarErro('O campo número deve ser um valor inteiro maior que zero.');
+      return;
+    }
+
     final cadastro = Cadastro(texto: texto, numero: numero);
 
     try {
