@@ -1,11 +1,12 @@
-import 'package:sqflite/sqflite.dart'; 
+import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 class DatabaseHelper {
   static Database? _database;
 
   static Future<Database> getDatabase() async {
-    if (_database != null) return _database!;
+    if (_database != null)
+      return _database!; //Cria o banco de dados caso não tenha
 
     final dbPath = await getDatabasesPath();
     final path = join(dbPath, 'simple_crud.db');
